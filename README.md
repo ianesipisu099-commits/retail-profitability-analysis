@@ -4,6 +4,53 @@
 
 This project uses PostgreSQL to examine sales, profitability, discount patterns, and recorded order returns in a Superstore-style transactional dataset. The analysis is designed to demonstrate SQL data validation, aggregation, joins, date filtering, profitability metrics, and business interpretation.
 
+## Executive Summary
+
+This project analyses retail sales, profitability, discounting and product returns using PostgreSQL. The objective was to identify the factors associated with business performance and highlight areas where management attention could improve profitability.
+
+The historical analysis covers **9,175 order-line records across 4,581 distinct orders**, from 3 January 2023 to 22 October 2026. Future-dated records were excluded to avoid treating future transactions as historical performance.
+
+### Key business findings
+
+**1. Overall financial performance**
+
+- Total sales: **$2,111,931.81**
+- Total profit: **$273,111.42**
+- Overall profit margin: **12.93%**
+
+**2. Discounting presents a significant profitability risk**
+
+Orders with discounts of 30% or higher generated $326,750.18 in sales but recorded a loss of $117,534.16, equivalent to a negative profit margin of **-35.97%**.
+
+By comparison, transactions with discounts below 30% generated $390,645.57 in profit, with a margin of **21.88%**.
+
+This indicates a strong association between high discount levels and poor profitability in the analysed data. It does not, on its own, establish that discounts caused the losses.
+
+**3. Returns vary across product categories**
+
+Technology had the highest category-level return rate at **7.77%**, followed by Furniture at **7.49%** and Office Supplies at **5.98%**.
+
+At subcategory level, Machines recorded the highest return rate at **11.43%**, followed by Tables at **10.00%**.
+
+**4. Customer segments show relatively similar return rates**
+
+Corporate customers recorded a return rate of **6.03%**, Consumer customers 5.76%, and Home Office customers 5.09%.
+
+### Business recommendations
+
+Based on these findings, the following actions are worth considering:
+
+- **Review discount policies:** Introduce clearer approval controls for discounts of 30% or higher, supported by product-level profitability checks.
+- **Protect product margins:** Investigate products and subcategories generating losses under heavy discounting before continuing or expanding promotional offers.
+- **Investigate product returns:** Examine the reasons behind higher return rates for Machines, Tables and Technology products. Review product quality, descriptions, fulfilment and customer expectations.
+- **Monitor performance regularly:** Track sales, profit margins, discount levels and return rates by category and subcategory to identify emerging risks.
+
+### Overall conclusion
+
+The analysis demonstrates that strong sales performance does not necessarily translate into strong profitability. Discount management and product-level return monitoring are important areas for improving retail business performance.
+
+The findings are based on the available dataset and should be treated as analytical indicators rather than proof of causation.
+
 ## Business questions
 
 - What are the overall sales, profit, and profit margin?
