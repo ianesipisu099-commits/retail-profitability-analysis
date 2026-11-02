@@ -1,0 +1,17 @@
+# Database credentials and local configuration
+.env
+*.conf
+
+# Temporary and backup files
+*.tmp
+*.bak
+*.log
+*~
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Python artifacts, if any
+__pycache__/
+.venv/
