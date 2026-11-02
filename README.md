@@ -69,6 +69,34 @@ All 10,194 source rows have non-null and unique `row_id` values. Basic checks fo
 
 Two historical row pairs have identical values across all fields except `row_id`. They are treated as **potential duplicates**, not confirmed errors. Together, the extra copies account for approximately $380.49 in sales and $23.36 in profit. The source rows are retained for the primary analysis, with a sensitivity query provided in `04_discount_analysis.sql`. Source verification is needed before removing either record.
 
+## Selected SQL Results
+
+The following PostgreSQL outputs provide evidence of the analysis and illustrate the key findings.
+
+### Discount analysis
+
+**Overall profitability by discount group**
+
+![Overall discount comparison](results/discount-comparison.png)
+
+**Profitability by category and discount group**
+
+![Discount profitability by category](results/discount-by-category.png)
+
+### Returns analysis
+
+**Recorded return rates by product category**
+
+![Return rates by category](results/returns-by-category.png)
+
+**Recorded return rates by customer segment**
+
+![Return rates by segment](results/returns-by-segment.png)
+
+**Recorded return rates by product subcategory**
+
+![Return rates by subcategory](results/returns-by-subcategory.png)
+
 ## Methodology and limitations
 
 - Historical analyses consistently use `order_date <= DATE '2026-10-22'`.
