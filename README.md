@@ -163,6 +163,20 @@ The following PostgreSQL outputs provide evidence of the analysis and illustrate
 4. Run the sales, returns, and discount analysis files.
 5. Export selected result tables or create charts for a portfolio presentation if desired.
 
+## Dataset Source and Attribution
+
+The project uses the **Superstore Sales** sample dataset made available through Tableau Public.
+
+- **Source:** [Tableau Public – Sample Data](https://public.tableau.com/app/learn/sample-data)
+- **Dataset:** Superstore Sales
+- **Data format:** CSV
+- **Tables used in the analysis:** Orders and Returns
+- **Additional file:** People data was included in the repository but was not used in the four SQL analysis scripts.
+
+The dataset represents a fictitious retail business and contains information on products, sales and profitability.
+
+The project uses a historical analysis cutoff of 22 October 2026. Future-dated records were excluded from the historical analysis.
+
 ## Skills demonstrated
 
 - PostgreSQL querying
