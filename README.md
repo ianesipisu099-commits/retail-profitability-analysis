@@ -1,74 +1,118 @@
 # PostgreSQL Superstore Sales and Profitability Analysis
 
-## Project overview
+## Project Overview
 
-This project uses PostgreSQL to examine sales, profitability, discount patterns, and recorded order returns in a Superstore-style transactional dataset. The analysis is designed to demonstrate SQL data validation, aggregation, joins, date filtering, profitability metrics, and business interpretation.
+This project uses PostgreSQL to analyse retail sales, profitability, discount patterns, and recorded order returns using a Superstore-style transactional dataset.
+
+The objective is to identify patterns affecting business performance, highlight potential profitability risks, and translate SQL analysis into actionable business insights.
+
+The project demonstrates practical SQL skills, including data validation, aggregations, joins, common table expressions (CTEs), window functions, date filtering, and business-focused analysis.
+
+---
 
 ## Executive Summary
 
-This project analyses retail sales, profitability, discounting and product returns using PostgreSQL. The objective was to identify the factors associated with business performance and highlight areas where management attention could improve profitability.
+This project examines the financial performance of a retail business using PostgreSQL, with particular attention to sales, profit margins, discounting, and recorded product returns.
 
-The historical analysis covers **9,175 order-line records across 4,581 distinct orders**, from 3 January 2023 to 22 October 2026. Future-dated records were excluded to avoid treating future transactions as historical performance.
+The historical analysis covers **9,175 order-line records across 4,581 distinct orders**, from **3 January 2023 to 22 October 2026**. Future-dated records were excluded to ensure that the analysis reflects the defined historical reporting period.
 
-### Key business findings
+### Key Business Findings
 
-**1. Overall financial performance**
+#### 1. Overall Financial Performance
 
-- Total sales: **$2,111,931.81**
-- Total profit: **$273,111.42**
-- Overall profit margin: **12.93%**
+The business generated:
 
-**2. Discounting presents a significant profitability risk**
+| Financial Metric | Result |
+|---|---:|
+| Total Sales | $2,111,931.81 |
+| Total Profit | $273,111.42 |
+| Overall Profit Margin | 12.93% |
+| Distinct Orders | 4,581 |
+| Order-Line Records | 9,175 |
 
-Orders with discounts of 30% or higher generated $326,750.18 in sales but recorded a loss of $117,534.16, equivalent to a negative profit margin of **-35.97%**.
+The business generated positive overall profit, although profitability varied considerably across products, categories, and discount levels.
 
-By comparison, transactions with discounts below 30% generated $390,645.57 in profit, with a margin of **21.88%**.
+#### 2. High Discounting Presents a Significant Profitability Risk
 
-This indicates a strong association between high discount levels and poor profitability in the analysed data. It does not, on its own, establish that discounts caused the losses.
+Transactions with discounts of **30% or higher** generated $326,750.18 in sales but recorded a loss of $117,534.16, resulting in a negative profit margin of **-35.97%**.
 
-**3. Returns vary across product categories**
+In comparison, transactions with discounts below 30% generated $390,645.57 in profit, with a profit margin of **21.88%**.
 
-Technology had the highest category-level return rate at **7.77%**, followed by Furniture at **7.49%** and Office Supplies at **5.98%**.
+The same negative high-discount profitability pattern appeared across Furniture, Office Supplies, and Technology.
 
-At subcategory level, Machines recorded the highest return rate at **11.43%**, followed by Tables at **10.00%**.
+This indicates a strong association between higher discount levels and weaker profitability in the analysed dataset. It does not independently establish that discounting caused the losses.
 
-**4. Customer segments show relatively similar return rates**
+#### 3. Recorded Returns Vary Across Product Categories
 
-Corporate customers recorded a return rate of **6.03%**, Consumer customers 5.76%, and Home Office customers 5.09%.
+Technology had the highest category-level return incidence rate at **7.77%**, followed by Furniture at **7.49%** and Office Supplies at **5.98%**.
 
-### Business recommendations
+At subcategory level, Machines recorded the highest return incidence rate at **11.43%**, followed by Tables at **10.00%**.
 
-Based on these findings, the following actions are worth considering:
+These findings identify product areas that may warrant further investigation into product quality, fulfilment, and customer expectations.
+
+#### 4. Customer Segments Show Relatively Similar Return Rates
+
+Recorded order-level return rates across customer segments were:
+
+| Customer Segment | Return Rate |
+|---|---:|
+| Corporate | 6.03% |
+| Consumer | 5.76% |
+| Home Office | 5.09% |
+
+The differences are relatively small, suggesting that the observed return patterns are not concentrated exclusively in one customer segment.
+
+### Business Recommendations
+
+Based on the findings, the following actions are worth considering:
 
 - **Review discount policies:** Introduce clearer approval controls for discounts of 30% or higher, supported by product-level profitability checks.
 - **Protect product margins:** Investigate products and subcategories generating losses under heavy discounting before continuing or expanding promotional offers.
-- **Investigate product returns:** Examine the reasons behind higher return rates for Machines, Tables and Technology products. Review product quality, descriptions, fulfilment and customer expectations.
-- **Monitor performance regularly:** Track sales, profit margins, discount levels and return rates by category and subcategory to identify emerging risks.
+- **Investigate recorded returns:** Examine the reasons behind higher return incidence rates for Machines, Tables, and Technology products. Review product quality, descriptions, fulfilment, and customer expectations.
+- **Monitor performance regularly:** Track sales, profit margins, discount levels, and return rates by category and subcategory to identify emerging risks.
 
-### Overall conclusion
+### Overall Conclusion
 
-The analysis demonstrates that strong sales performance does not necessarily translate into strong profitability. Discount management and product-level return monitoring are important areas for improving retail business performance.
+The analysis demonstrates that strong sales performance does not necessarily translate into strong profitability.
 
-The findings are based on the available dataset and should be treated as analytical indicators rather than proof of causation.
+Discount management, product-level margin monitoring, and closer investigation of recorded returns are important areas for improving retail business performance.
 
-## Business questions
+The findings reflect patterns in the available dataset and should be treated as analytical indicators rather than proof of causation.
 
-- What are the overall sales, profit, and profit margin?
-- How do results vary by region, category, subcategory, customer segment, and month?
-- Which subcategories and products warrant further profitability review?
-- How are high discounts associated with recorded profit?
-- What share of historical orders are listed in the returns table, and how does that vary by segment and product category?
+---
 
-## Data and scope
+## Business Questions
+
+The analysis was designed to answer the following questions:
+
+1. What are the overall sales, profit, and profit margin?
+2. How do financial results vary by region, category, subcategory, customer segment, and month?
+3. Which subcategories and products warrant further profitability review?
+4. How are high discount levels associated with recorded profit?
+5. What proportion of historical orders is listed in the returns table, and how does this vary by customer segment and product category?
+
+---
+
+## Data and Scope
 
 The analysis uses two PostgreSQL tables:
 
-- `public.orders`: order-line data, including dates, customer and product attributes, sales, quantity, discount, and profit.
-- `public.returns`: order IDs listed as returned and a return status.
+| Table | Description |
+|---|---|
+| `public.orders` | Order-line data containing dates, customer and product attributes, sales, quantity, discount, and profit. |
+| `public.returns` | Order IDs listed as returned, together with their return status. |
 
-The primary historical cutoff is **22 October 2026, inclusive**. Queries filter on `order_date <= DATE '2026-10-22'`. Records with later order dates are excluded from historical performance analysis because they are future-dated relative to the stated cutoff.
+The primary historical cutoff is **22 October 2026, inclusive**.
 
-### Historical dataset summary
+All historical queries consistently apply:
+
+```sql
+WHERE order_date <= DATE '2026-10-22'
+```
+
+Records with later order dates are excluded from historical performance analysis because they fall beyond the defined reporting cutoff.
+
+### Historical Dataset Summary
 
 | Metric | Result |
 |---|---:|
@@ -81,87 +125,236 @@ The primary historical cutoff is **22 October 2026, inclusive**. Queries filter 
 | Future-dated order lines excluded | 1,019 |
 | Future-dated distinct orders excluded | 530 |
 
-Profit margin is calculated as total profit divided by total sales. Monetary values are rounded for display.
+**Profit margin** is calculated as total profit divided by total sales. Monetary values are rounded for display.
 
-## Repository structure
+---
 
-- `01_data_quality.sql` — row counts, ID uniqueness, missing/invalid values, date consistency, potential duplicates, and returns validation.
-- `02_sales_profitability.sql` — overall performance and breakdowns by region, category, subcategory, segment, month, and product.
-- `03_returns_analysis.sql` — overall order-level return rate and return incidence by segment, category, and subcategory.
-- `04_discount_analysis.sql` — profitability by discount group, category, subcategory, and product/discount combination, plus duplicate sensitivity analysis.
+## Repository Structure
 
-## Key findings
+```text
+retail-profitability-analysis/
+│
+├── Data/
+│   └── raw/
+│       ├── orders.csv
+│       ├── people.csv
+│       └── returns.csv
+│
+├── results/
+│   ├── discount-comparison.png
+│   ├── discount-by-category.png
+│   ├── returns-by-category.png
+│   ├── returns-by-segment.png
+│   └── returns-by-subcategory.png
+│
+├── sql/
+│   ├── 01_data_quality.sql
+│   ├── 02_sales_profitability.sql
+│   ├── 03_returns_analysis.sql
+│   └── 04_discount_analysis.sql
+│
+├── .gitignore
+└── README.md
+```
 
-### 1. Overall performance
+### SQL Script Descriptions
 
-The historical dataset contains 9,175 order lines across 4,581 distinct orders, generating $2.11 million in sales and $273.1 thousand in recorded profit. The overall profit margin is approximately 12.93%.
+| SQL Script | Purpose |
+|---|---|
+| `01_data_quality.sql` | Examines row counts, ID uniqueness, missing and invalid values, date consistency, potential duplicates, and returns data integrity. |
+| `02_sales_profitability.sql` | Analyses overall financial performance and breaks down results by region, category, subcategory, customer segment, month, and product. |
+| `03_returns_analysis.sql` | Calculates the overall order-level return rate and examines recorded return incidence by customer segment, category, and subcategory. |
+| `04_discount_analysis.sql` | Investigates profitability by discount group, category, subcategory, and product/discount combination, including duplicate sensitivity analysis. |
 
-### 2. Discounts and profitability
+---
 
-The historical high-discount group (30% or more) contains 1,273 order lines across 924 distinct orders, with $326,750.18 in sales and a recorded loss of $117,534.16 (a -35.97% margin). The lower-discount group (below 30%) contains 7,902 order lines across 4,194 distinct orders, with $1,785,181.62 in sales and $390,645.57 in profit (a 21.88% margin).
+## Key Findings
 
-The same negative high-discount pattern appears in Furniture, Office Supplies, and Technology in the reviewed results. This is an association in the dataset, not proof that discounting alone caused the losses. Product mix, costs, pricing rules, and other factors may contribute. A practical next step is to review discount authorization and contribution margins at the product level rather than apply a blanket cap without further analysis.
+### 1. Overall Sales and Profitability
 
-### 3. Recorded returns
+The historical dataset contains 9,175 order lines across 4,581 distinct orders, generating approximately $2.11 million in sales and $273.1 thousand in recorded profit.
 
-The returns table contains 296 distinct returned order IDs, all of which match an order in the orders table. Within the historical cutoff, 262 of 4,581 distinct orders are listed as returned, an order-level rate of 5.72%.
+The overall profit margin is **12.93%**.
 
-Return rates differ by segment: Corporate 6.03%, Consumer 5.76%, and Home Office 5.09%. At category level, Technology has a 7.77% return incidence rate, Furniture 7.49%, and Office Supplies 5.98%. Machines has the highest subcategory rate in the reviewed results (11.43%, 12 returned orders out of 105 orders containing Machines); Tables follows at 10.00% (28 out of 280).
+However, profitability varies substantially across product categories and subcategories.
 
-Category and subcategory denominators can overlap because a single order can contain multiple categories or subcategories. The returns table flags returned orders, not necessarily returned individual product lines. The absence of an order from the returns table does not prove that no return occurred.
+| Category | Sales | Profit | Profit Margin |
+|---|---:|---:|---:|
+| Technology | $764,648.41 | $135,079.78 | 17.67% |
+| Furniture | $681,580.73 | $18,170.06 | 2.67% |
+| Office Supplies | $665,702.67 | $119,861.58 | 18.01% |
 
-### 4. Data quality and potential duplicates
+Furniture generates substantial sales but has a considerably lower profit margin than the other two categories.
 
-All 10,194 source rows have non-null and unique `row_id` values. Basic checks found no missing values in the tested order ID, order date, sales, profit, discount, or quantity fields; no negative sales; no discounts outside the 0-to-1 range; and no nonpositive quantities. No missing ship dates or ship dates earlier than order dates were found.
+At subcategory level, Tables recorded a loss of $15,599.77, with a margin of -8.51%. Bookcases and Supplies also recorded negative profit margins.
 
-Two historical row pairs have identical values across all fields except `row_id`. They are treated as **potential duplicates**, not confirmed errors. Together, the extra copies account for approximately $380.49 in sales and $23.36 in profit. The source rows are retained for the primary analysis, with a sensitivity query provided in `04_discount_analysis.sql`. Source verification is needed before removing either record.
+Copiers was among the strongest subcategories, generating $48,117.88 in profit at a 36.54% margin.
+
+### 2. Discounts and Profitability
+
+Discounting is one of the most significant profitability patterns identified in the analysis.
+
+#### Overall Profitability by Discount Group
+
+| Discount Group | Order Lines | Distinct Orders | Sales | Profit | Profit Margin |
+|---|---:|---:|---:|---:|---:|
+| Below 30% | 7,902 | 4,194 | $1,785,181.62 | $390,645.57 | 21.88% |
+| 30% or Higher | 1,273 | 924 | $326,750.18 | -$117,534.16 | -35.97% |
+
+The high-discount group represents a substantial profitability concern.
+
+The same negative high-discount pattern appears across all three product categories:
+
+| Category | High-Discount Sales | High-Discount Profit | Profit Margin |
+|---|---:|---:|---:|
+| Furniture | $178,064.69 | -$49,733.00 | -27.93% |
+| Office Supplies | $34,300.48 | -$39,449.48 | -115.01% |
+| Technology | $114,385.01 | -$28,351.67 | -24.79% |
+
+Office Supplies recorded the most severe high-discount margin deterioration.
+
+The results suggest that discount levels should be evaluated alongside product costs and contribution margins. Product mix, pricing rules, and other factors may also contribute to the observed losses.
+
+The 30% threshold is an analytical comparison point, not a universal pricing recommendation.
+
+### 3. Recorded Returns Analysis
+
+The returns table contains **296 distinct returned order IDs**, all of which match an order in the orders table.
+
+Within the historical reporting period, 262 of 4,581 distinct orders are listed as returned, giving an order-level return rate of **5.72%**.
+
+#### Return Rate by Customer Segment
+
+| Customer Segment | Total Orders | Returned Orders | Return Rate |
+|---|---:|---:|---:|
+| Corporate | 1,393 | 84 | 6.03% |
+| Consumer | 2,344 | 135 | 5.76% |
+| Home Office | 844 | 43 | 5.09% |
+
+#### Return Incidence by Product Category
+
+| Category | Orders Containing Category | Returned Orders | Return Incidence |
+|---|---:|---:|---:|
+| Technology | 1,403 | 109 | 7.77% |
+| Furniture | 1,628 | 122 | 7.49% |
+| Office Supplies | 3,427 | 205 | 5.98% |
+
+#### Highest Subcategory Return Incidence
+
+| Subcategory | Orders Containing Subcategory | Returned Orders | Return Incidence |
+|---|---:|---:|---:|
+| Machines | 105 | 12 | 11.43% |
+| Tables | 280 | 28 | 10.00% |
+| Paper | 1,089 | 92 | 8.45% |
+| Chairs | 533 | 45 | 8.44% |
+| Fasteners | 202 | 17 | 8.42% |
+
+**Interpretation and limitations:**
+
+- Return rates are calculated at order level using distinct order IDs.
+- The returns table identifies returned orders, not necessarily the individual product lines returned.
+- An order can contain multiple categories or subcategories. Consequently, category and subcategory denominators overlap and should not be added together.
+- The absence of an order from the returns table does not prove that no return occurred.
+
+These results identify areas for further investigation but do not establish which specific products were physically returned or why.
+
+### 4. Data Quality and Potential Duplicates
+
+Data validation was performed before the main analytical queries.
+
+The checks confirmed:
+
+- All 10,194 source rows have non-null and unique `row_id` values.
+- No missing values were identified in the tested order ID, order date, sales, profit, discount, or quantity fields.
+- No negative sales values were identified.
+- No discounts outside the 0-to-1 range were identified.
+- No nonpositive quantities were identified.
+- No missing shipping dates or shipping dates earlier than order dates were identified.
+- All distinct return IDs matched an order in the orders table.
+
+#### Potential Duplicate Records
+
+Two historical row pairs were identified as potential duplicates because their values were identical across all fields except `row_id`.
+
+They were treated as potential duplicates rather than confirmed data-entry errors.
+
+| Measure | Original Dataset | Excluding Extra Copies |
+|---|---:|---:|
+| Historical order lines | 9,175 | 9,173 |
+| Sales | $2,111,931.81 | $2,111,551.31 |
+| Profit | $273,111.42 | $273,088.06 |
+| Profit Margin | 12.93% | 12.93% |
+
+The two extra copies account for **$380.50 in sales** and **$23.36 in profit**.
+
+The original records were retained in the primary analysis. A sensitivity query is included in `04_discount_analysis.sql` to demonstrate the effect of excluding the extra copies.
+
+Source verification would be required before removing either record.
+
+---
 
 ## Selected SQL Results
 
-The following PostgreSQL outputs provide evidence of the analysis and illustrate the key findings.
+The following visualisations provide supporting evidence for the main findings.
 
-### Discount analysis
+### Discount Analysis
 
-**Overall profitability by discount group**
+**Overall Profitability by Discount Group**
 
 ![Overall discount comparison](results/discount-comparison.png)
 
-**Profitability by category and discount group**
+**Profitability by Category and Discount Group**
 
 ![Discount profitability by category](results/discount-by-category.png)
 
-### Returns analysis
+### Returns Analysis
 
-**Recorded return rates by product category**
+**Recorded Return Incidence by Product Category**
 
 ![Return rates by category](results/returns-by-category.png)
 
-**Recorded return rates by customer segment**
+**Recorded Return Rates by Customer Segment**
 
 ![Return rates by segment](results/returns-by-segment.png)
 
-**Recorded return rates by product subcategory**
+**Recorded Return Incidence by Product Subcategory**
 
 ![Return rates by subcategory](results/returns-by-subcategory.png)
 
-## Methodology and limitations
+---
 
-- Historical analyses consistently use `order_date <= DATE '2026-10-22'`.
-- Orders are counted with `COUNT(DISTINCT order_id)` where an order-level count is required; the underlying `orders` table is at order-line level.
-- Profit margin is `SUM(profit) / SUM(sales)`, not the average of line-level margins.
-- Returns are joined at order level using distinct return order IDs to avoid multiplying order-line totals.
-- Discount groupings are descriptive. The 30% threshold is used to compare observed groups and is not a universal policy recommendation.
-- Results describe recorded values in the dataset and do not establish causation.
-- The potential duplicate rows are retained until verified against the source.
-- The dataset's `profit` field is treated as the recorded profit measure; the project does not independently validate how source costs, refunds, or return adjustments were calculated.
+## Methodology and Limitations
 
-## How to run
+The project applies the following analytical principles:
 
-1. Load the dataset into PostgreSQL and confirm the tables are named `public.orders` and `public.returns`.
-2. Open each `.sql` file in pgAdmin or another PostgreSQL client.
-3. Run `01_data_quality.sql` first and review its results.
-4. Run the sales, returns, and discount analysis files.
-5. Export selected result tables or create charts for a portfolio presentation if desired.
+1. **Historical scope:** Historical analyses consistently use `order_date <= DATE '2026-10-22'`.
+2. **Order-level counting:** `COUNT(DISTINCT order_id)` is used where an order-level count is required because the underlying orders table contains individual order lines.
+3. **Profit margin:** Calculated as `SUM(profit) / SUM(sales)`, rather than averaging individual line-level margins.
+4. **Returns analysis:** Return IDs are deduplicated and joined at order level to avoid multiplying order-line totals.
+5. **Discount comparisons:** Discount groups are descriptive comparisons. The 30% threshold is not presented as a universal policy recommendation.
+6. **Data integrity:** Potential duplicate records are retained until they can be verified against the original source.
+7. **Interpretation:** Observed relationships do not establish causation.
+8. **Source profit measure:** The dataset's `profit` field is treated as the recorded profit measure. The project does not independently validate how source costs, refunds, or return adjustments were calculated.
+
+The analysis is limited to the fields and records available in the supplied dataset. Additional operational information would be needed to establish the causes of product returns or the precise reasons behind individual profitability outcomes.
+
+---
+
+## How to Run
+
+1. Install PostgreSQL and load the supplied CSV files into a database.
+2. Create and populate the `public.orders` and `public.returns` tables using the appropriate column definitions.
+3. Open the SQL files in pgAdmin or another PostgreSQL-compatible client.
+4. Execute `01_data_quality.sql` first and review the data validation results.
+5. Execute the remaining scripts:
+   - `02_sales_profitability.sql`
+   - `03_returns_analysis.sql`
+   - `04_discount_analysis.sql`
+6. Review the query outputs and compare them with the selected results presented in this repository.
+
+The `people.csv` file is included in the source dataset but was not used in the four SQL analysis scripts.
+
+---
 
 ## Dataset Source and Attribution
 
@@ -170,20 +363,35 @@ The project uses the **Superstore Sales** sample dataset made available through 
 - **Source:** [Tableau Public – Sample Data](https://public.tableau.com/app/learn/sample-data)
 - **Dataset:** Superstore Sales
 - **Data format:** CSV
-- **Tables used in the analysis:** Orders and Returns
-- **Additional file:** People data was included in the repository but was not used in the four SQL analysis scripts.
+- **Tables used:** Orders and Returns
+- **Additional file:** People data was included in the repository but was not used in the SQL analysis.
 
-The dataset represents a fictitious retail business and contains information on products, sales and profitability.
+The dataset represents a fictitious retail business and contains information about products, sales, customers, and profitability.
 
-The project uses a historical analysis cutoff of 22 October 2026. Future-dated records were excluded from the historical analysis.
+The project applies a historical analysis cutoff of **22 October 2026**, excluding future-dated records from the historical analysis.
 
-## Skills demonstrated
+---
 
-- PostgreSQL querying
-- Data-quality checks and duplicate detection
-- Date filtering and historical scoping
-- Aggregations and conditional aggregation
-- Joins and common table expressions (CTEs)
-- Window functions
-- Profit-margin calculations
-- Business interpretation with explicit limitations
+## Skills Demonstrated
+
+| Technical Skills | Analytical Skills |
+|---|---|
+| PostgreSQL | Sales and profitability analysis |
+| SQL querying | Discount and margin analysis |
+| Data validation and quality checks | Returns analysis |
+| Joins and CTEs | Product and category performance evaluation |
+| Aggregations and conditional aggregation | Business interpretation |
+| Window functions | Data-driven recommendations |
+| Date filtering and data scoping | Analytical limitations and sensitivity analysis |
+
+**Tools:** PostgreSQL, pgAdmin, Git, and GitHub.
+
+---
+
+## Project Outcome
+
+This project demonstrates the use of PostgreSQL to transform raw transactional data into structured business analysis.
+
+It combines data-quality validation, financial performance analysis, discount evaluation, and recorded returns analysis to identify business risks and areas requiring further investigation.
+
+The final deliverable includes four documented SQL scripts, validated analytical outputs, supporting visualisations, and business recommendations.
